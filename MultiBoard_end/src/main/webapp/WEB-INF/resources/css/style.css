@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+#contact-form {
+	margin: 0;	
+}
+#contact-form .contact-name {
+	margin-bottom: 5px;	
+}
+::-webkit-input-placeholder { 
+  color: #aaa;
+}
+#contact-form input[type=text],
+#contact-form textarea,
+#contact-form select {
+	width: 100%;
+    font-size: 14px;
+    height: auto;
+    padding: 0 10px; 
+	margin: 0;	
+    resize: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+    border-radius: 0;	
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	border: 1px solid #e1e1e1;
+	background: #fff;
+    color: #aaa;
+}
+#contact-form input[type=text],
+#contact-form select {
+	height: 40px;
+	line-height: 40px;
+}
+#contact-form textarea {
+	padding: 8px 10px;
+	resize: vertical;
+}
+#contact-form input[type=text]:focus,
+#contact-form textarea:focus {
+	border-color: #111;
+	color: #111;
+}
+
+#contact-form .contact-submit {
+	margin-top: 15px;
+	text-align: right;
+}
+#contact-form .submit {
+    background: #666;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    vertical-align: middle;
+	-webkit-transition: background 0.1s linear 0s, color 0.1s linear 0s;	
+	-moz-transition: background 0.1s linear 0s, color 0.1s linear 0s;
+	-o-transition: background 0.1s linear 0s, color 0.1s linear 0s;
+	transition: background 0.1s linear 0s, color 0.1s linear 0s;
+}
+#contact-form .submit:hover {
+    background: #111;
+    color: #fff;
+}
+#xet-contact-page {
+	color: #555;
+}
+#xet-contact-page h3 {
+	position: relative;
+	padding-left: 30px;
+	color: #111;
+}
+#xet-contact-page h3:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 10%;
+	bottom: 10%;
+	width: 10px;
+	background-color: #111;
+}
+
+#xet-contact-page ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#xet-contact-page ul li {
+	margin: 0 0 10px;
+	padding: 0;
+}
+#xet-contact-page ul li a {
+	color: #555;
+}
+
+
+
+
+
+

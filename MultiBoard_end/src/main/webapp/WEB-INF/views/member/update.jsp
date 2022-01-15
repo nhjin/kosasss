@@ -1,10 +1,21 @@
-<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setBundle basename="i18n/member" />
+<fmt:setBundle basename="i18n/board" />
+<%@ taglib prefix="jk" tagdir="/WEB-INF/tags" %>
 <html>
-<jsp:include page="/WEB-INF/views/include/staticFiles.jsp"/>
+
+
+<head>
+<title>:::Triple S:::</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="/css/main.css" />
+<!-- <link rel="stylesheet" href="/WEB-INF/resources/css/main.css" />-->
+</head>
+
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     // JavaScript form validation
@@ -90,56 +101,75 @@
 
   }, false);
 </script>
-<body>
-<jsp:include page="/WEB-INF/views/include/bodyHeader.jsp"/>
-<div class="container">
-	<div class="pg-opt">
-        <div class="row">
-            <div class="col-md-6 pc">
-                <h2><fmt:message key="UPDATE_USER_INFO"/><small> <fmt:message key="${message}"/></small></h2>
-            </div>
-            <div class="col-md-6">
-                <ol class="breadcrumb">
-                    <li><fmt:message key="MEMBER"/></li>
-                    <li class="active"><fmt:message key="UPDATE_USER_INFO"/></li>
-                </ol>
-            </div>
-        </div>
-    </div>
+<body class="is-preload">
+	<!-- Header -->
+	<section id="main">
+		<header id="header" >
+			<h1><a href="/">Helmet Detection System</a> by Triple S</h1> <!-- http://localhost -->
+			<nav id="nav">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">Menu</a>
+						<ul>
+							<li><a href="/detection">헬멧 착용 인증</a></li>
+							<li>
+								<a href="#">커뮤니티</a>
+								<ul>
+									<li><a href="/board/cat/1">안전소식 알리미</a></li>
+									<li><a href="/board/cat/2">자유게시판</a></li>
+									<li><a href="/board/cat/3">건의사항</a></li>
+								</ul>
+							</li>
+							<li><a href="/about">About Us</a></li>
+						</ul>
+					</li>
+					<c:if test="${empty sessionScope.userid}">
+					<li><a href="/member/login" class="button">Sign In</a></li>
+					</c:if>
+					<c:if test="${not empty sessionScope.userid}">
+					<li><a href="/member/logout" class="button">Sign out</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</header>
+	</section>	
+</div>
+
 	<div class="content">
 	<form action="<c:url value='/member/update.do'/>" method="post" id="joinForm" class="form-horizontal">
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="userid"><fmt:message key="MEMBER_ID"/></label>
+      <label class="control-label col-sm-2" for="userid">MEMBER_ID</label>
       <div class="col-sm-4">
-        <input type="text" name="userid" id="userid" value="${member['userid']}" ${empty member.userid ? "" : "readonly"} class="form-control" placeholder="<fmt:message key="MEMBER_ID"/>" required>
+        <input type="text" name="userid" id="userid" value="${member['userid']}" ${empty member.userid ? "" : "readonly"} class="form-control" placeholder="MEMBER_ID" required>
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="password"><fmt:message key="MEMBER_PW"/></label>
+      <label class="control-label col-sm-2" for="password">MEMBER_PW</label>
       <div class="col-sm-4">
         <input type="password" name="password" id="password" class="form-control" title="<fmt:message key='PASSWORD_TITLE'/>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="password_re"><fmt:message key="MEMBER_PW_RE"/></label>
+      <label class="control-label col-sm-2" for="password_re">MEMBER_PW_RE</label>
       <div class="col-sm-4">
         <input type="password" name="password_re" id="password_re" class="form-control" title="<fmt:message key='PASSWORD_RE_TITLE'/>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="name"><fmt:message key="MEMBER_NAME"/></label>
+      <label class="control-label col-sm-2" for="name">MEMBER_NAME</label>
       <div class="col-sm-4">
         <input type="text" name="name" id="name" value="${member.name}" class="form-control" required>
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="phone"><fmt:message key="MEMBER_PHONE"/></label>
+      <label class="control-label col-sm-2" for="phone">MEMBER_PHONE</label>
       <div class="col-sm-6">
         <input type="text" name="phone" id="phone" value="${member.phone}" class="form-control" required>
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="email"><fmt:message key="MEMBER_EMAIL"/></label>
+      <label class="control-label col-sm-2" for="email">MEMBER_EMAIL</label>
       <div class="col-sm-8">
         <input type="text" name="email" id="email" value="${member.email}" class="form-control" required>
       </div>
@@ -153,6 +183,36 @@
 	</form>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span
+						class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon brands fa-google-plus"><span
+						class="label">Google+</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Triple S: Safety Saviors. All rights reserved.</li>
+				<li>재홍 준원 종현 경우 소현 현진</li>
+			</ul>
+		</footer>
+	</div>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.dropotron.min.js"></script>
+	<script src="/js/jquery.scrollex.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
 </body>
+
 </html>

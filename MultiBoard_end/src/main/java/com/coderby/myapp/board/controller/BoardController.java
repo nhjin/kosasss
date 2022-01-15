@@ -38,6 +38,17 @@ public class BoardController {
 	
 	@Autowired
 	IBoardCategoryService categoryService;
+	
+	@RequestMapping("/admin")
+	public String adminPage() {
+		return "admin/mainpage";
+	}
+	
+	//about 페이지 컨트롤러
+	@RequestMapping("/about")
+	public String aboutPage() {
+		return "board/about";
+	}
 		
 	@RequestMapping("/board/cat/{categoryId}/{page}")
 	public String getListByCategory(@PathVariable int categoryId, @PathVariable int page, HttpSession session, Model model) {
@@ -46,6 +57,9 @@ public class BoardController {
 
 		List<Board> boardList = boardService.selectArticleListByCategory(categoryId, page);
 		model.addAttribute("boardList", boardList);
+		//추가
+		List<BoardCategory> categoryList = categoryService.selectAllCategory();
+		model.addAttribute("categoryList", categoryList);
 
 		// paging start
 		int bbsCount = boardService.selectTotalArticleCountByCategoryId(categoryId);
@@ -55,7 +69,8 @@ public class BoardController {
 		}
 		model.addAttribute("totalPageCount", totalPage);
 		model.addAttribute("page", page);
-		return "board/list";
+		//return "board/list";
+		return "board/test";
 	}
 
 	@RequestMapping("/board/cat/{categoryId}")
@@ -65,12 +80,18 @@ public class BoardController {
 	
 	@RequestMapping("/board/{boardId}/{page}")
 	public String getBoardDetails(@PathVariable int boardId, @PathVariable int page, Model model) {
+
+		System.out.println("확인1");
 		Board board = boardService.selectArticle(boardId);
 		model.addAttribute("board", board);
 		model.addAttribute("page", page);
 		model.addAttribute("categoryId", board.getCategoryId());
+		//추가
+		model.addAttribute("email", board.getEmail());
+		System.out.println("이메일주소확인 : " + board.getEmail());
 		logger.info("getBoardDetails " + board.toString());
 		return "board/view";
+
 	}
 
 	@RequestMapping("/board/{boardId}")
@@ -181,6 +202,7 @@ public class BoardController {
 		List<BoardCategory> categoryList = categoryService.selectAllCategory();
 		model.addAttribute("categoryList", categoryList);
 		Board board = boardService.selectArticle(boardId);
+		//System.out.println("board확인 : " + board);
 		model.addAttribute("categoryId", board.getCategoryId());
 		model.addAttribute("board", board);
 		return "board/update";
