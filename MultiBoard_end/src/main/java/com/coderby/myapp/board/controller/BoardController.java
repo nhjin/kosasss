@@ -39,11 +39,6 @@ public class BoardController {
 	@Autowired
 	IBoardCategoryService categoryService;
 	
-	@RequestMapping("/admin")
-	public String adminPage() {
-		return "admin/mainpage";
-	}
-	
 	//about 페이지 컨트롤러
 	@RequestMapping("/about")
 	public String aboutPage() {

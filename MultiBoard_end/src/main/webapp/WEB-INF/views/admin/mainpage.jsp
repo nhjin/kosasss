@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-확인
+<a href="/me/count">확인용</a>
 </body>
 </html>
